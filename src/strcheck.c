@@ -1,4 +1,4 @@
-#include "libstrcheck.h"
+#include "strcheck.h"
 
 #include <string.h>
 

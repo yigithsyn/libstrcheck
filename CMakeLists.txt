@@ -8,7 +8,7 @@ option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 include_directories(.)
 
 # Source
-file(GLOB SOURCES "src/libstrcheck.c")
+file(GLOB SOURCES "src/strcheck.c")
 
 # Library
 if(MSVC)
@@ -33,14 +33,8 @@ else()
 endif(BUILD_SHARED_LIBS)
 
 # install
-install(TARGETS ${LIBNAME} CONFIGURATIONS Release 
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}/
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/
-)
-install(FILES ${CMAKE_SOURCE_DIR}/libstrcheck.h
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/
-)
+install(TARGETS ${LIBNAME} CONFIGURATIONS Release)
+install(FILES ${CMAKE_SOURCE_DIR}/strcheck.h DESTINATION ${CMAKE_INSTALL_DIR}/include)
 
 # testing binary
 add_executable(test1 test/test1.c)
