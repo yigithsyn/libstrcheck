@@ -34,7 +34,7 @@ endif(BUILD_SHARED_LIBS)
 
 # install
 install(TARGETS ${LIBNAME} CONFIGURATIONS Release)
-install(FILES ${CMAKE_SOURCE_DIR}/strcheck.h DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/")
+install(FILES ${CMAKE_SOURCE_DIR}/strcheck.h DESTINATION "include")
 
 # testing binary
 add_executable(test1 test/test1.c)
