@@ -32,6 +32,7 @@ else()
   add_library(${LIBNAME} STATIC ${SOURCES}) 
 endif(BUILD_SHARED_LIBS)
 install(TARGETS ${LIBNAME} CONFIGURATIONS Release)
+install(FILES "${PROJECT_SOURCE_DIR}/libstrcheck.h")
 
 # testing binary
 add_executable(test1 test/test1.c)
