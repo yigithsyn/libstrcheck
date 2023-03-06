@@ -31,7 +31,7 @@ if(BUILD_SHARED_LIBS)
 else()
   add_library(${LIBNAME} STATIC ${SOURCES}) 
 endif(BUILD_SHARED_LIBS)
-
+install(TARGETS ${LIBNAME} CONFIGURATIONS Release)
 
 # testing binary
 add_executable(test1 test/test1.c)
