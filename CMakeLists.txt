@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.22.0)
 project(strcheck VERSION 0.1.0)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
+option(ENABLE_TESTS "Build test binaries" ON)
 
 
 # Header
@@ -36,12 +37,14 @@ endif(BUILD_SHARED_LIBS)
 install(TARGETS ${LIBNAME} CONFIGURATIONS Release)
 install(FILES ${CMAKE_SOURCE_DIR}/strcheck.h DESTINATION "include")
 
-# testing binary
-add_executable(test1 test/test1.c)
-target_link_libraries(test1 PRIVATE "${LIBNAME}")
+if(ENABLE_TESTS)
+  # testing binary
+  add_executable(test1 test/test1.c)
+  target_link_libraries(test1 PRIVATE "${LIBNAME}")
 
-# enable testing functionality
-enable_testing()
+  # enable testing functionality
+  enable_testing()
 
-# define tests
-add_test(NAME test1  COMMAND $<TARGET_FILE:test1>)
+  # define tests
+  add_test(NAME test1  COMMAND $<TARGET_FILE:test1>)
+endif(ENABLE_TESTS)
