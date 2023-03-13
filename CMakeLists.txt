@@ -1,24 +1,22 @@
 cmake_minimum_required(VERSION 3.22.0)
 project(strcheck VERSION 0.1.0)
 
+# option
 option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 option(ENABLE_TESTS "Build test binaries" ON)
 
+# source
+file(GLOB SOURCES "src/*.c")
+file(GLOB INCLUDES "*.h")
 
-# Header
-include_directories(.)
-
-# Source
-file(GLOB SOURCES "src/strcheck.c")
-
-# Library
+# library
 if(MSVC)
   set(LIBNAME lib${CMAKE_PROJECT_NAME})
 else()
   set(LIBNAME ${CMAKE_PROJECT_NAME})
 endif(MSVC)
 
-# Buid library
+# build
 if(BUILD_SHARED_LIBS)
   add_library(${LIBNAME} SHARED ${SOURCES}) 
   if(MSVC)
@@ -35,8 +33,9 @@ endif(BUILD_SHARED_LIBS)
 
 # install
 install(TARGETS ${LIBNAME} CONFIGURATIONS Release)
-install(FILES ${CMAKE_SOURCE_DIR}/strcheck.h DESTINATION "include")
+install(FILES ${INCLUDES} DESTINATION "include")
 
+# test
 if(ENABLE_TESTS)
   # testing binary
   add_executable(test1 test/test1.c)
